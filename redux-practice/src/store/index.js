@@ -1,37 +1,37 @@
 import { createStore } from 'redux';
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 const initialState = { counter: 0, showCounter: true };
 
-const counterReducer = (state = initialState, action) => {
-  if (action.type === 'increment') {
-    return {
-      counter: state.counter + 1,
-      showCounter: state.showCounter,
-    };
-  }
-  if (action.type === 'increase') {
-    return {
-      counter: state.counter + action.amount,
-      showCounter: state.showCounter,
-    };
-  }
-  if (action.type === 'decrement') {
-    return {
-      counter: state.counter - 1,
-      showCounter: state.showCounter,
-    };
-  }
+const counterSlice = createSlice({
+  name: 'counter',
+  // initialState: { counter: 0, showCounter: true },
+  // initialState: initialState,
+  initialState,
+  reducers: {
+    increment(state) {
+      // state를 직접 변경하는것은 불가능하지만 react-toolkit과 createSlice를 통해 가능하다
+      // 자동으로 값을 복사하여 새로운 상태 객체를 생성하고 값을 넣는다
+      state.counter++;
+    },
+    decrement(state) {
+      state.counter--;
+    },
+    increase(state, action) {
+      state.counter = state.counter + action.payload;
+    },
+    toggleCounter(state) {
+      state.showCounter = !state.showCounter;
+    },
+  },
+});
 
-  if (action.type === 'toggle') {
-    return {
-      showCounter: !state.showCounter,
-      counter: state.counter,
-    };
-  }
+export const counterActions = counterSlice.actions;
 
-  return state;
-};
-
-const store = createStore(counterReducer);
+// 여러개의 리듀서를 하나의 리듀서로 쉽게 합치기 위하여 configureStore 사용
+// const store = createStore(counterSlice.reducer);
+const store = configureStore({
+  reducer: counterSlice.reducer, // 여러개의 리듀서일때는 객체를 만들어 넣음
+});
 
 export default store;
