@@ -5,14 +5,14 @@ export default function AvailablePlaces({ onSelectPlace }) {
   // Todo: Fetch available places from backend API
   const [availablePlaces, setAvailablePlaces] = useState([]);
 
-  fetch('http://localhost:3000/places')
-    .then((response) => {
-      return response.json();
-    })
-    .then((resData) => {
+  useEffect(() => {
+    async function fetchPlaces() {
+      const response = await fetch('http://localhost:3000/places');
+      const resData = await response.json();
       setAvailablePlaces(resData.places);
-    });
-  useEffect(() => {}, []);
+    }
+    fetchPlaces();
+  }, []);
 
   return (
     <Places
