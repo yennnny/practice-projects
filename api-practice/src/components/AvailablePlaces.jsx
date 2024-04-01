@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Places from './Places.jsx';
 import Error from './Error.jsx';
+import { sortPlacesByDistance } from '../loc.js';
+import { fetchAvailablePlaces } from '../http.js';
 
 export default function AvailablePlaces({ onSelectPlace }) {
   // 데이터를 가져올 때 흔히 아래 세 가지의 state가 함께 동작한다.
@@ -18,21 +20,24 @@ export default function AvailablePlaces({ onSelectPlace }) {
     async function fetchPlaces() {
       setIsFetching(true);
       try {
-        const response = await fetch('http://localhost:3000/places');
-        const resData = await response.json();
+        const places = await fetchAvailablePlaces();
 
-        if (!response.ok) {
-          throw new Error('Failted to fetch places');
-        }
-        setAvailablePlaces(resData.places);
+        navigator.geolocation.getCurrentPosition((position) => {
+          const sortedPlaces = sortPlacesByDistance(
+            places,
+            position.coords.latitude,
+            position.coords.longitude
+          );
+          setAvailablePlaces(sortedPlaces);
+          setIsFetching(false); // 장소 fetching과 분류가 끝난 이 시점(콜백함수 안)에 넣어준다
+        });
       } catch (err) {
         setError({
           message:
             error.message || 'Could not fetch places, please try again later.',
         });
+        setIsFetching(false); // -> 에러가 났든 안났든 끝내야 하기 때문에 catch에도 작성
       }
-
-      setIsFetching(false); // try catch 밖에 있어야 한다 -> 에러가 났든 안났든 끝내야 하기 때문
     }
     fetchPlaces();
   }, []);
