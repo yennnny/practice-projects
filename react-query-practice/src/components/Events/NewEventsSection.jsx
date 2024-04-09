@@ -9,6 +9,8 @@ export default function NewEventsSection() {
   const { data, isPending, isError, error } = useQuery({
     queryKey: ['events'],
     queryFn: fetchEvents,
+    staleTime: 5000, // 5초로 설정하면 불필요한 요청 전송을 방지할 수 있음(default: 0)
+    // gcTime: 1000, 가비지 수집 시간: 데이터와 캐시를 얼마나 오래 보관할지 제어 (default: 5분)
   });
 
   let content;
