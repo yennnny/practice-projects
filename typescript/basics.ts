@@ -50,4 +50,21 @@ let course = 'React - The Complete Guide';
 let course2: string | number = 'React - The Complete Guide';
 course2 = 1234;
 
-let userName2: string | string[] = 'June'; // 문자열과 문자열 배열 2가지를 설정할 수 있음
+let userName2: string | string[] = 'Jay'; // 문자열과 문자열 배열 2가지를 설정할 수 있음
+
+// Type Aliases 타입을 중복해서 사용하고 싶다면 Type Aliases를 사용한다
+// type으로 선언해주기
+type Person = {
+  name: string;
+  age: number;
+};
+
+let person2: Person;
+
+person2 = {
+  name: 'Jay',
+  age: 27,
+};
+
+// 객체 배열 지정
+let people2: Person[];
