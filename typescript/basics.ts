@@ -68,3 +68,15 @@ person2 = {
 
 // 객체 배열 지정
 let people2: Person[];
+
+// Functions & types
+// 반환값의 타입도 명시적으로 지정할 수 있지만, 타입스크립트가 알아서 추론하기에 굳이 할 필요는 없음.
+// function add(a: number, b: number): number {
+function add(a: number, b: number) {
+  return a + b;
+}
+
+// 반환값이 없는 (return을 하지 않는)함수는 void 타입을 가지며, undefined를 리턴한다.
+function print(value: any) {
+  console.log(value);
+}
