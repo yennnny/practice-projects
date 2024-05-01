@@ -37,3 +37,10 @@ let people: {
   name: string;
   age: number;
 }[];
+
+// Type interence (타입 추론)
+
+let course = 'React - The Complete Guide';
+
+// course = 12341; 명시적인 타입을 지정하지 않아도 에러가 뜸
+// 타입 추론 방식으로 코드를 작성하는 것이 권장되는 방식 -> 불필요하게 타입을 지정하지 않아도 되기 때문
