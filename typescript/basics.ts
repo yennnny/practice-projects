@@ -80,3 +80,15 @@ function add(a: number, b: number) {
 function print(value: any) {
   console.log(value);
 }
+
+// Generis
+// 유영성, 타입 안정성 측면에 도움이 된다
+function insertAtBeginning<T>(arr: T[], val: T) {
+  const newArr = [val, ...arr];
+  return newArr;
+}
+const demoArr = [1, 2, 3];
+const updatedArr = insertAtBeginning(demoArr, -1); // [-1, 1, 2, 3];
+const stringArr = insertAtBeginning(['a', 'b', 'c'], 'd');
+
+// updatedArr[0].split('');
