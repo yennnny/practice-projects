@@ -23,6 +23,13 @@ const ReactQuery = () => {
     // enabled: false, // 기본은 true로 되어있으며, false로 설정하면 useQuery가 자동으로 시작되지 않는다
     onSuccess: onSuccess,
     onError: onError,
+    select: (data) => {
+      // select 항목을 이용하여 백엔드에서 직접 필요한 항목을 선택할 수 있다
+      const userName = data
+        ?.filter((data) => data.id > 5)
+        .map((data) => data.name);
+      return userName;
+    },
   });
   console.log({ isLoading, isFetching });
 
@@ -38,7 +45,8 @@ const ReactQuery = () => {
         fetch data
       </button>
       <ul className="list-disc p-4">
-        {data && data?.map((user) => <li key={user.id}>{user.name}</li>)}
+        {/* {data && data?.map((user) => <li key={user.id}>{user.name}</li>)} */}
+        {data && data?.map((userName) => <li key={userName}>{userName}</li>)}
       </ul>
     </>
   );
