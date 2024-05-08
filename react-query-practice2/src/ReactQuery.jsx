@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import useUserName from './hooks/useUserName';
 
 const ReactQuery = () => {
   const onSuccess = (data) =>
@@ -7,30 +7,11 @@ const ReactQuery = () => {
     console.log('오류 발생 이후 사이드 이펙트 수행', error);
 
   // useQuery는 기본적으로 React 컴포넌트가 마운트되면 자동으로 시작된다.
-  const { isLoading, isFetching, data, isError, error, refetch } = useQuery({
-    queryKey: ['fetchUser'],
-    queryFn: async () => {
-      // try {
-      //   const res = await
-      //   return await res.json();
-      // } catch (err) {
-      //   console.error('Error', err);
-      // }
-      return await fetch('https://jsonplaceholder.typicode.com/users').then(
-        (res) => res.json()
-      );
-    },
-    // enabled: false, // 기본은 true로 되어있으며, false로 설정하면 useQuery가 자동으로 시작되지 않는다
-    onSuccess: onSuccess,
-    onError: onError,
-    select: (data) => {
-      // select 항목을 이용하여 백엔드에서 직접 필요한 항목을 선택할 수 있다
-      const userName = data
-        ?.filter((data) => data.id > 5)
-        .map((data) => data.name);
-      return userName;
-    },
-  });
+
+  const { isLoading, isFetching, data, isError, error, refetch } = useUserName(
+    onSuccess,
+    onError
+  );
   console.log({ isLoading, isFetching });
 
   if (isLoading) return <>Loading...</>;
