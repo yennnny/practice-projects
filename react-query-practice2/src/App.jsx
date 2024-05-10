@@ -5,6 +5,7 @@ import AxiosQuery from './AxiosQuery';
 import ReactQuery from './ReactQuery';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import ReactQueryDetails from './ReactQueryDetails';
+import ParallelQuery from './ParallelQuery';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/axios-query" element={<AxiosQuery />} />
           <Route path="/react-query" element={<ReactQuery />} />
           <Route path="/react-query/:userId" element={<ReactQueryDetails />} />
+          <Route path="/parallel-query" element={<ParallelQuery />} />
         </Route>
       </Routes>
       <ReactQueryDevtools position="top-right" />
