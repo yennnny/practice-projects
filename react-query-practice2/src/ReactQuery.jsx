@@ -1,4 +1,5 @@
 import useUserName from './hooks/useUserName';
+import { Link } from 'react-router-dom';
 
 const ReactQuery = () => {
   const onSuccess = (data) =>
@@ -26,8 +27,13 @@ const ReactQuery = () => {
         fetch data
       </button>
       <ul className="list-disc p-4">
-        {/* {data && data?.map((user) => <li key={user.id}>{user.name}</li>)} */}
-        {data && data?.map((userName) => <li key={userName}>{userName}</li>)}
+        {/* {data && data?.map((userName) => <li key={userName}>{userName}</li>)} */}
+        {data &&
+          data?.map((user) => (
+            <li key={user.id}>
+              <Link to={`/react-query/${user.id}`}>{user.name}</Link>
+            </li>
+          ))}
       </ul>
     </>
   );

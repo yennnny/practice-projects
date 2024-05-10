@@ -4,6 +4,7 @@ import Home from './components/Home';
 import AxiosQuery from './AxiosQuery';
 import ReactQuery from './ReactQuery';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import ReactQueryDetails from './ReactQueryDetails';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/axios-query" element={<AxiosQuery />} />
           <Route path="/react-query" element={<ReactQuery />} />
+          <Route path="/react-query/:userId" element={<ReactQueryDetails />} />
         </Route>
       </Routes>
       <ReactQueryDevtools position="top-right" />
