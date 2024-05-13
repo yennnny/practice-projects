@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-const fetchUserDetails = (userId) => {
+export const fetchUserDetails = (userId) => {
   return axios.get('https://jsonplaceholder.typicode.com/users/' + userId);
 };
 
