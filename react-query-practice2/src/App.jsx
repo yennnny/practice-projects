@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import ReactQueryDetails from './ReactQueryDetails';
 import ParallelQuery from './ParallelQuery';
 import DynamicParallelQueries from './DynamicParallelQueries';
+import PaginatedQuery from './PaginatedQuery';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             path="/dynamic-parallel-queries"
             element={<DynamicParallelQueries userIds={['1', '2']} />}
           />
+          <Route path="/paginated-query" element={<PaginatedQuery />} />
         </Route>
       </Routes>
       <ReactQueryDevtools position="top-right" />
