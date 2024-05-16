@@ -12,3 +12,5 @@ function add(): number {
 function sumAdd(a: number, b: number): number {
   return a + b;
 }
+
+sum(10, 20, 30, 40); // 함수의 파라미터를 제한하는 특성
