@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useTodoState } from './Context';
 
 const HeaderBlock = styled.header`
   padding-top: 48px;
@@ -28,6 +29,8 @@ const HeaderBlock = styled.header`
 `;
 
 const Header = () => {
+  const todos = useTodoState();
+  console.log(todos);
   return (
     <HeaderBlock>
       <h1>
