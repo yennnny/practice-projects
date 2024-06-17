@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
 import { useTodoDispatch } from './Context';
@@ -77,4 +78,4 @@ const Item = ({ id, done, txt }) => {
   );
 };
 
-export default Item;
+export default React.memo(Item);
