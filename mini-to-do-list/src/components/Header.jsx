@@ -1,4 +1,6 @@
-.header {
+import styled from 'styled-components';
+
+const HeaderBlock = styled.header`
   padding-top: 48px;
   padding-left: 32px;
   padding-right: 32px;
@@ -23,4 +25,17 @@
     margin-top: 30px;
     font-weight: bold;
   }
-}
+`;
+
+const Header = () => {
+  return (
+    <HeaderBlock>
+      <h1>
+        2024년 06월 14일 <span className="day">금요일</span>
+      </h1>
+      <p className="tasks-total">할 일 0개 남음</p>
+    </HeaderBlock>
+  );
+};
+
+export default Header;
