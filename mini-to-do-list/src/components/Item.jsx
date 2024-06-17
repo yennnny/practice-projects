@@ -8,6 +8,8 @@ const Remove = styled.button`
   color: #dee2e6;
   font-size: 24px;
   cursor: pointer;
+  background: none;
+  border: none;
   &:hover {
     color: #ff6b6b;
   }
