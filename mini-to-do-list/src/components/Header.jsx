@@ -32,10 +32,18 @@ const Header = () => {
   const todos = useTodoState();
   const undoneTasks = todos.filter((todo) => !todo.done).length;
 
+  const dateString = new Date().toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  const dayName = new Date().toLocaleDateString('ko-KR', { weekday: 'long' });
+
   return (
     <HeaderBlock>
       <h1>
-        2024년 06월 14일 <span className="day">금요일</span>
+        {dateString}
+        <span className="day">{dayName}</span>
       </h1>
       <p className="tasks-total">할 일 {undoneTasks}개 남음</p>
     </HeaderBlock>
