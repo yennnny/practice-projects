@@ -30,13 +30,14 @@ const HeaderBlock = styled.header`
 
 const Header = () => {
   const todos = useTodoState();
-  console.log(todos);
+  const undoneTasks = todos.filter((todo) => !todo.done).length;
+
   return (
     <HeaderBlock>
       <h1>
         2024년 06월 14일 <span className="day">금요일</span>
       </h1>
-      <p className="tasks-total">할 일 0개 남음</p>
+      <p className="tasks-total">할 일 {undoneTasks}개 남음</p>
     </HeaderBlock>
   );
 };
