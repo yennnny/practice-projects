@@ -1,6 +1,7 @@
 // 'use client';
 import Link from 'next/link';
 import './globals.css';
+import { Control } from './Control';
 
 export const metadata = {
   title: 'My First Next App',
@@ -9,7 +10,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const res = await fetch('http://localhost:9999/topics', {
-    caches: 'no-store',
+    cache: 'no-store', // topics - 리스트 업데이트시켜주기
   });
   const topics = await res.json();
 
@@ -25,25 +26,9 @@ export default async function RootLayout({ children }) {
               <Link href={`/read/${topic.id}`}>{topic.title}</Link>
             </li>
           ))}
-          {/* <li>
-            <Link href="/read/1">html</Link>
-          </li>
-          <li>
-            <Link href="/read/2">css</Link>
-          </li> */}
         </ol>
         {children}
-        <ul>
-          <li>
-            <Link href="create">Create</Link>
-          </li>
-          <li>
-            <Link href="/update/1">Update</Link>
-          </li>
-          <li>
-            <button type="button">delete</button>
-          </li>
-        </ul>
+        <Control />
       </body>
     </html>
   );
