@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const res = await fetch('http://localhost:9999/topics', {
+  const res = await fetch(process.env.API_URL + '/topics', {
     cache: 'no-store', // topics - 리스트 업데이트시켜주기
   });
   const topics = await res.json();
