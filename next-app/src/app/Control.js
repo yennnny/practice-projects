@@ -20,7 +20,7 @@ export function Control() {
             <button
               type="button"
               onClick={() => {
-                fetch('http://localhost:9999/topics/' + id, {
+                fetch(NEXT_PUBLIC_API_URL + '/topics/' + id, {
                   method: 'DELETE',
                 })
                   .then((res) => res.json())
