@@ -14,16 +14,6 @@
       "title": "react",
       "body": "React is...",
       "id": 3
-    },
-    {
-      "title": "javascript",
-      "body": "javascript is ...",
-      "id": 4
-    },
-    {
-      "title": "typescript",
-      "body": "typescript is ...",
-      "id": 5
     }
   ],
   "posts": [
