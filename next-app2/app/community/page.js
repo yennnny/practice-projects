@@ -1,5 +1,5 @@
-const page = () => {
-  return <>community</>;
+const CommunityPage = () => {
+  return <h1>Community page</h1>;
 };
 
-export default page;
+export default CommunityPage;

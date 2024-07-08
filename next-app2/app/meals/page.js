@@ -3,8 +3,11 @@ import Link from 'next/link';
 const MealsPage = () => {
   return (
     <>
-      MealsPage
+      <h1>Meals Page</h1>
       <>
+        <p>
+          <Link href="/meals/share">meals-share</Link>
+        </p>
         <p>
           <Link href="/meals/page-1">meals-page1</Link>
         </p>
