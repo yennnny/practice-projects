@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Places from './Places.jsx';
 import Error from './Error.jsx';
+import { sortPlacesByDistance } from '../loc.js';
+import { fetchAvailablePlaces } from '../http.js';
 
 export default function AvailablePlaces({ onSelectPlace }) {
   const [isFetching, setIsFetching] = useState(false);
@@ -14,23 +16,29 @@ export default function AvailablePlaces({ onSelectPlace }) {
       setIsFetching(true);
 
       try {
-        const response = await fetch('http://localhost:3000/placess');
-        const resData = await response.json();
-        if (!response.ok) {
-          throw new Error('Failed to fetch places');
-          // HTTP 응답이 성공적이지 않을 때, 예를들어 404또는 500와 같은 경우
-          // 네트워크 요청은 성공했으나 서버가 요청을 처리할 수 없어서 실패한 경우
-        }
-        setAvailablePlaces(resData.places);
+        const places = await fetchAvailablePlaces();
+
+        // 사용자의 현재 위치 불러오기
+        navigator.geolocation.getCurrentPosition((position) => {
+          // position: 위치를 객체형태로 받아옴
+          const sortedPlaces = sortPlacesByDistance(
+            places,
+            position.coords.latitude,
+            position.coords.longitude
+          );
+        });
+
+        setAvailablePlaces(places);
+        setIsFetching(false);
       } catch (error) {
         // 네트워크 요청 자체가 실패했을 경우. 예륻르어 인터넷 연결이 끊겼거나 요청 URL이 잘못되어 네트워크 요청을 보낼 수 없는 경우
         setError({
           message:
             error.message || 'Cound not fetch places, please try again later.',
         });
+        setIsFetching(false);
       }
 
-      setIsFetching(false);
       // fetch는 Promise를 반환
       // then 메소드에 함수를 전달하여 정의하면 Promise가 해결되고 response를 받고나서 한 번 실행됨(자동으로 response 객체를 받음)
     }
