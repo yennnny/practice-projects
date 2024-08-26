@@ -1,9 +1,5 @@
-const MealDetailPage = () => {
-  return (
-    <>
-      <h1>Meals Detail</h1>
-    </>
-  );
+const MealDetailsPage = () => {
+  return <h1>Meal Details</h1>;
 };
 
-export default MealDetailPage;
+export default MealDetailsPage;
